@@ -1,0 +1,24 @@
+﻿@model IEnumerable<questionnaire1.Models.Question>
+@{
+    Layout = "_Layout";
+}
+
+<h1>Опрос</h1>
+
+@foreach (var question in Model)
+{
+    <div class="question">
+        @question.Text
+        @foreach (var answer in question.Answers)
+        {
+            <input type="radio" name="@question.Id" value="@answer.Id" @(answer.IsSelected ? "checked" : "") />
+            <label for="@answer.Id">@answer.Text</label>
+
+            <br />
+        }
+    </div>
+}
+
+<button id="submitButton">Отправить результаты</button>
+
+<script src="~/js/site.js"></script>
